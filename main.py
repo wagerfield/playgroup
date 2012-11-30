@@ -20,6 +20,15 @@ import webapp2
 from google.appengine.api import channel
 from google.appengine.ext.webapp import template
 
+class Main(webapp2.RequestHandler):
+    def get(self):
+        
+        template_values = {
+        
+        }
+        path = os.path.join(os.path.dirname(__file__), 'index.html')
+        self.response.out.write(template.render(path, template_values))
+        
 class Recorder(webapp2.RequestHandler):
     def get(self):
         token = channel.create_channel('123456')
@@ -32,5 +41,6 @@ class Recorder(webapp2.RequestHandler):
         self.response.out.write(template.render(path, template_values))
     
 app = webapp2.WSGIApplication([
-    ('/', Recorder)
+    ('/recorder', Recorder),
+    ('/', Main)
 ], debug=True)
