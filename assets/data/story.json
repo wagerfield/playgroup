@@ -1,0 +1,36 @@
+{
+  "title": "Title",
+  "characters": [
+    {
+      "id": 0,
+      "name": "The King"
+    },
+    {
+      "id": 1,
+      "name": "The Queen"
+    },
+    {
+      "id": 2,
+      "name": "Narator"
+    }
+  ],
+  "story": {
+    "nodes": [
+      {
+        "character": 0,
+        "direction": "Angry",
+        "text": "Hello"
+      },
+      {
+        "character": 1,
+        "direction": "Happy",
+        "text": "World."
+      },
+      {
+        "character": 2,
+        "direction": "Sad",
+        "text": "Again."
+      }
+    ]
+  }
+}

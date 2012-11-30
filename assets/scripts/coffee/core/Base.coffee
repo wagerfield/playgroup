@@ -54,3 +54,5 @@ namespace = (namespace) ->
 
 # Create namespaces.
 PROJECT = namespace()
+CONTROLLERS = namespace 'controllers'
+MODELS = namespace 'models'

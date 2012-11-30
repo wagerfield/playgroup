@@ -269,6 +269,13 @@ table {
   font-weight: 400;
   font-style: normal; }
 
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+
 body {
   font-size: 12px;
   background: white;
@@ -327,3 +334,46 @@ canvas {
       display: block; }
   #datgui .dg .closed .cr.graph {
     height: 0; }
+
+#story {
+  margin: 40px auto;
+  width: 660px; }
+
+#profiles {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  #profiles .profile {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 320px;
+    height: 240px;
+    border: 1px solid red;
+    float: left; }
+    #profiles .profile.a {
+      border-color: #52cc00; }
+    #profiles .profile.b {
+      border-color: deepskyblue; }
+    #profiles .profile.c {
+      border-color: #d90000; }
+    #profiles .profile + .profile {
+      margin-left: 20px; }
+    #profiles .profile .name {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center; }
+
+#script {
+  margin: 40px auto;
+  width: 528px; }
+  #script p {
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    font-family: serif;
+    font-size: 14px;
+    color: #222222; }
+  #script .ghost {
+    opacity: 0.5; }
