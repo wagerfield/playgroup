@@ -11,8 +11,8 @@
 
 	onOpened = function() {
 	  connected = true;
-	  sendMessage('opened');
-	  updateBoard();
+	  //sendMessage('opened');
+	  //updateBoard();
 	};
 
     channel = new goog.appengine.Channel('{{ token }}');
@@ -22,6 +22,9 @@
     //socket.onerror = onError;
     //socket.onclose = onClose;
 
+	function initialize() {
+		
+	}
 	
 	
   </script>
