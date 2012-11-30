@@ -2051,7 +2051,7 @@
         this.setNodeState(index + 1, PENDING);
         $activeNode = this.$script.find('.active');
         log('USER ID:', window.userid);
-        if (window.userid === 'b') {
+        if (newIndex % 2) {
           $activeNode.addClass('b');
         }
         top = $activeNode.position().top;

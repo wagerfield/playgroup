@@ -14,6 +14,18 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
+    "\/assets\/scripts\/coffee\/project\/controllers\/Story.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Story.coffee",
+      "checkOutputStyle" : 0,
+      "minifyOutput" : 0,
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Story.js",
+      "outputStyle" : 0,
+      "fileType" : 32
+    },
     "\/assets\/scripts\/coffee\/core\/Base.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -23,18 +35,6 @@
       "checkOutputStyle" : 0,
       "minifyOutput" : 0,
       "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Base.js",
-      "outputStyle" : 0,
-      "fileType" : 32
-    },
-    "\/assets\/scripts\/coffee\/core\/Class.coffee" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Class.coffee",
-      "checkOutputStyle" : 0,
-      "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Class.js",
       "outputStyle" : 0,
       "fileType" : 32
     },
@@ -50,15 +50,15 @@
       "fileType" : 2,
       "debugStyle" : 0
     },
-    "\/assets\/scripts\/coffee\/project\/controllers\/Story.coffee" : {
+    "\/assets\/scripts\/coffee\/core\/Ease.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Story.coffee",
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Ease.coffee",
       "checkOutputStyle" : 0,
       "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Story.js",
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Ease.js",
       "outputStyle" : 0,
       "fileType" : 32
     },
@@ -73,15 +73,27 @@
       "outputAbbreviatedPath" : "\/assets\/scripts\/js\/scripts-ck.js",
       "fileType" : 64
     },
-    "\/assets\/scripts\/coffee\/core\/Ease.coffee" : {
+    "\/assets\/scripts\/coffee\/core\/Class.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Ease.coffee",
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Class.coffee",
       "checkOutputStyle" : 0,
       "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Ease.js",
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Class.js",
+      "outputStyle" : 0,
+      "fileType" : 32
+    },
+    "\/assets\/scripts\/coffee\/core\/Layout.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Layout.coffee",
+      "checkOutputStyle" : 0,
+      "minifyOutput" : 0,
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Layout.js",
       "outputStyle" : 0,
       "fileType" : 32
     },
@@ -95,18 +107,6 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/assets\/scripts\/js\/gui\/gui.min-ck.js",
       "fileType" : 64
-    },
-    "\/assets\/scripts\/coffee\/core\/Layout.coffee" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Layout.coffee",
-      "checkOutputStyle" : 0,
-      "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Layout.js",
-      "outputStyle" : 0,
-      "fileType" : 32
     },
     "\/assets\/styles\/sass\/core\/normalize.sass" : {
       "ignoreWasSetByUser" : 0,
@@ -129,17 +129,16 @@
       "outputAbbreviatedPath" : "\/No Output Path",
       "fileType" : 16
     },
-    "\/assets\/scripts\/coffee\/core\/Array.coffee" : {
-      "ignoreWasSetByUser" : 0,
+    "\/assets\/scripts\/js\/signals\/signals.min.js" : {
+      "ignoreWasSetByUser" : 1,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Array.coffee",
-      "checkOutputStyle" : 0,
-      "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Array.js",
-      "outputStyle" : 0,
-      "fileType" : 32
+      "inputAbbreviatedPath" : "\/assets\/scripts\/js\/signals\/signals.min.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/assets\/scripts\/js\/signals\/signals.min-ck.js",
+      "fileType" : 64
     },
     "\/assets\/scripts\/coffee\/gui\/GraphController.coffee" : {
       "ignoreWasSetByUser" : 0,
@@ -153,17 +152,6 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
-    "\/assets\/scripts\/js\/signals\/signals.min.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/js\/signals\/signals.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/js\/signals\/signals.min-ck.js",
-      "fileType" : 64
-    },
     "\/assets\/styles\/sass\/project\/constants.sass" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -176,6 +164,18 @@
       "fileType" : 2,
       "debugStyle" : 0
     },
+    "\/assets\/scripts\/coffee\/core\/Array.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Array.coffee",
+      "checkOutputStyle" : 0,
+      "minifyOutput" : 0,
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Array.js",
+      "outputStyle" : 0,
+      "fileType" : 32
+    },
     "\/assets\/scripts\/js\/jquery\/jquery.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -187,17 +187,17 @@
       "outputAbbreviatedPath" : "\/assets\/scripts\/js\/jquery\/jquery-ck.js",
       "fileType" : 64
     },
-    "\/assets\/styles\/sass\/project\/mixins.sass" : {
+    "\/assets\/scripts\/coffee\/core\/Utils.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/styles\/sass\/project\/mixins.sass",
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Utils.coffee",
+      "checkOutputStyle" : 0,
+      "minifyOutput" : 0,
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Utils.js",
       "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/styles\/sass\/css\/mixins.css",
-      "fileType" : 2,
-      "debugStyle" : 0
+      "fileType" : 32
     },
     "\/assets\/scripts\/coffee\/core\/Math.coffee" : {
       "ignoreWasSetByUser" : 0,
@@ -211,29 +211,6 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
-    "\/assets\/styles\/sass\/mixins\/css3.sass" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/styles\/sass\/mixins\/css3.sass",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/assets\/styles\/sass\/css\/css3.css",
-      "fileType" : 2,
-      "debugStyle" : 0
-    },
-    "\/assets\/scripts\/js\/jquery\/jquery.min.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/js\/jquery\/jquery.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/js\/jquery\/jquery.min-ck.js",
-      "fileType" : 64
-    },
     "\/assets\/scripts\/coffee\/project\/Main.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -246,17 +223,40 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
-    "\/assets\/scripts\/coffee\/core\/Utils.coffee" : {
+    "\/assets\/scripts\/js\/jquery\/jquery.min.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/scripts\/js\/jquery\/jquery.min.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/assets\/scripts\/js\/jquery\/jquery.min-ck.js",
+      "fileType" : 64
+    },
+    "\/assets\/scripts\/coffee\/project\/controllers\/Controller.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Utils.coffee",
+      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Controller.coffee",
       "checkOutputStyle" : 0,
       "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/core\/Utils.js",
+      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Controller.js",
       "outputStyle" : 0,
       "fileType" : 32
+    },
+    "\/assets\/styles\/sass\/project\/mixins.sass" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/styles\/sass\/project\/mixins.sass",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/styles\/sass\/css\/mixins.css",
+      "fileType" : 2,
+      "debugStyle" : 0
     },
     "\/assets\/scripts\/js\/adapter.js" : {
       "ignoreWasSetByUser" : 0,
@@ -280,17 +280,17 @@
       "outputAbbreviatedPath" : "\/assets\/scripts\/js\/signals\/signals-ck.js",
       "fileType" : 64
     },
-    "\/assets\/scripts\/coffee\/project\/controllers\/Controller.coffee" : {
+    "\/assets\/styles\/sass\/mixins\/css3.sass" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Controller.coffee",
-      "checkOutputStyle" : 0,
-      "minifyOutput" : 0,
-      "outputAbbreviatedPath" : "\/assets\/scripts\/coffee\/project\/controllers\/Controller.js",
+      "inputAbbreviatedPath" : "\/assets\/styles\/sass\/mixins\/css3.sass",
       "outputStyle" : 0,
-      "fileType" : 32
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/styles\/sass\/css\/css3.css",
+      "fileType" : 2,
+      "debugStyle" : 0
     },
     "\/assets\/scripts\/coffee\/core\/Color.coffee" : {
       "ignoreWasSetByUser" : 0,
@@ -475,6 +475,15 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
+    "\/recorder.html" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/recorder.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/assets\/scripts\/coffee\/project\/controllers\/Selection.coffee" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -498,15 +507,6 @@
       "outputAbbreviatedPath" : "\/assets\/styles\/css\/styles.css",
       "fileType" : 2,
       "debugStyle" : 0
-    },
-    "\/recorder.html" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/recorder.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
     }
   },
   "manualImportLinks" : [
