@@ -131,6 +131,8 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
       @setNodeState index + 0, ACTIVE
       @setNodeState index + 1, PENDING
       $activeNode = @$script.find '.active'
+      log 'USER ID:', window.userid
+      $activeNode.addClass 'b' if window.userid is 'b'
       top = $activeNode.position().top
       @$scriptWrapper.css top:"#{-top}px"
     return

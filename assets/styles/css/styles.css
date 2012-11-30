@@ -366,6 +366,10 @@ canvas {
       width: 100%;
       text-align: center; }
 
+#mask {
+  overflow: hidden;
+  height: 1000px; }
+
 #script {
   position: relative;
   margin: 100px auto;
@@ -399,11 +403,11 @@ canvas {
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     margin: 0;
     position: relative;
-    line-height: 20px;
-    padding: 10px;
+    line-height: 30px;
+    padding: 25px 30px;
     border: 1px solid #aaaaaa;
     font-family: serif;
-    font-size: 14px;
+    font-size: 22px;
     color: #222222;
     margin-bottom: 15px; }
   #script .ghost {
@@ -411,18 +415,21 @@ canvas {
   #script .active {
     border-color: #52cc00;
     background: rgba(82, 204, 0, 0.25); }
+    #script .active.b {
+      border-color: deepskyblue;
+      background: rgba(0, 191, 255, 0.25); }
     #script .active:before {
       display: block;
       content: "";
       width: 0;
       height: 0;
       position: absolute;
-      left: -30px;
+      left: -50px;
       top: 50%;
-      margin-top: -20px;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      border-left: 20px solid #222222; }
+      margin-top: -30px;
+      border-top: 30px solid transparent;
+      border-bottom: 30px solid transparent;
+      border-left: 30px solid #222222; }
   #script .pending {
     opacity: 0.75; }
   #script .hide {

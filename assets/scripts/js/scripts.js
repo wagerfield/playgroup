@@ -2050,6 +2050,10 @@
         this.setNodeState(index + 0, ACTIVE);
         this.setNodeState(index + 1, PENDING);
         $activeNode = this.$script.find('.active');
+        log('USER ID:', window.userid);
+        if (window.userid === 'b') {
+          $activeNode.addClass('b');
+        }
         top = $activeNode.position().top;
         this.$scriptWrapper.css({
           top: "" + (-top) + "px"

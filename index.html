@@ -44,6 +44,7 @@
           </li>
         </ul>
       </header>
+      <div id="mask">
       <article id="script">
         <div class="wrapper">
           <p class="ghost">
@@ -57,6 +58,7 @@
           </p>
         </div>
       </article>
+      </div>
       <div id="footer">
       </div>
     </div>
@@ -68,6 +70,7 @@
   <script src="assets/scripts/js/gui/gui.js"></script>
   <script src="assets/scripts/js/scripts.js"></script>
   <script type="text/javascript">
+window.userid = 'a'
 var localVideo;
 var miniVideo;
 var remoteVideo;
@@ -303,6 +306,7 @@ function waitForRemoteVideo() {
 /* Transitions */
 
 function transitionToActive() {
+  window.userid = 'b'
   remoteVideo.style.opacity = 1;
 localVideo.src = "";
 miniVideo.style.opacity = 1;
