@@ -47,6 +47,7 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
   $profiles: null
   $profileNodes: null
   $script: null
+  $scriptWrapper: null
   $scriptNodes: null
 
   story: null
@@ -67,6 +68,7 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
     @$profiles = @$context.find '#profiles'
     @$profileNodes = @$profiles.find '.profile'
     @$script = @$context.find '#script'
+    @$scriptWrapper = @$script.find '.wrapper'
     @reset()
     $(window).on 'keydown', @onKeydown
     # @getVideo()
@@ -75,11 +77,13 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
   onKeydown: (event) =>
     event.preventDefault()
     if event.keyCode is 40
-      @setNodeIndex @nodeIndex++
+      @setNodeIndex @nodeIndex + 1
+    if event.keyCode is 38
+      @setNodeIndex @nodeIndex - 1
     return
 
   reset: () =>
-    @$script.empty()
+    @$scriptWrapper.empty()
     return
 
   getVideo: () =>
@@ -90,7 +94,6 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
   setUserId: (id) =>
     if @userId isnt id
       @userId = id
-      log 'setUserId:', id
     return
 
   setStory: (story) =>
@@ -110,21 +113,31 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
     $node = $("<p>#{node.text}</p>")
     $node.data CHARACTER, node.character
     $node.data DIRECTION, node.direction
-    @$script.append $node
+    @$scriptWrapper.append $node
     return
 
   setNodeIndex: (index) =>
-    if @nodeIndex isnt index
+    @$localVideo = $('#local video')
+    @$remoteVideo = $('#remote > video')
+    @$miniVideo = $('#mini > video')
+    log 'LOCAL:', @$localVideo
+    log 'REMOTE:', @$remoteVideo
+    log 'MINI:', @$miniVideo
+    newIndex = Math.clamp index, 0, @story.nodes.length - 1
+    if @nodeIndex isnt newIndex
+      @$scriptNodes.attr class:'hide'
       @nodeIndex = index
-      # @setNodeIndex index, HIDE for index in [0...@story.nodes.length]
-      # @setNodeState @nodeIndex - 1, GHOST
-      # @setNodeState @nodeIndex + 0, ACTIVE
-      # @setNodeState @nodeIndex + 1, PENDING
+      @setNodeState index - 1, GHOST unless index is 0
+      @setNodeState index + 0, ACTIVE
+      @setNodeState index + 1, PENDING
+      $activeNode = @$script.find '.active'
+      top = $activeNode.position().top
+      @$scriptWrapper.css top:"#{-top}px"
     return
 
   setNodeState: (index, state) =>
     $node = @$scriptNodes.eq index
-    log 'setNodeState:', index, state
+    $node.removeClass 'hide'
     $node.addClass state
     return
 

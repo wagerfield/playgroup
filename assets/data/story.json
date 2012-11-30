@@ -1,60 +1,41 @@
 {
-  "title": "Title",
+  "title": "Protochrome vs Plug-inator",
   "characters": [
     {
       "id": 0,
-      "name": "The King"
+      "name": "Protochrome"
     },
     {
       "id": 1,
-      "name": "The Queen"
-    },
-    {
-      "id": 2,
-      "name": "Narator"
+      "name": "Plug-inator"
     }
   ],
   "story": {
     "nodes": [
       {
         "character": 0,
-        "direction": "Angry",
-        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
+        "direction": "Defiantly",
+        "text": "There's no hope for you Plug-inator. The smooth experience is too powerful for you."
       },
       {
         "character": 1,
-        "direction": "Happy",
-        "text": "World asf asf a as fa sf dsg dfhdfhdfhsdfh dfhd fh dfh dfhdfhdfhdfh dfh d fhd fh dfh dfh  d fh d fh dfhdfhdfhdfhdfh  hfdh."
+        "direction": "With a mocking tone",
+        "text": "You don't know what I'm capable of. I'm going destroy your creation with one hand. It's like you've only just built it. Like in a single day."
       },
       {
         "character": 0,
-        "direction": "Sad",
-        "text": "sdgsdgdgs sdg dsgsdgsdgsdg sggsd g sdgsdgsdgsdg sgdgdsg sdgsdg sdgadgahsfh."
-      },
+        "direction": "defiantly… again",
+        "text": "It may be rough around the edges but it has the integrity of collaborative fibres binding it together."
+      }, 
       {
         "character": 1,
-        "direction": "Angry",
-        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
+        "direction": "Angrily",
+        "text": "Don't try and scare me with your browser-based revolution. I've been doing this for years. And it's never failed."
       },
       {
         "character": 0,
-        "direction": "Angry",
-        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
-      },
-      {
-        "character": 1,
-        "direction": "Happy",
-        "text": "World asf asf a as fa sf dsg dfhdfhdfhsdfh dfhd fh dfh dfhdfhdfhdfh dfh d fhd fh dfh dfh  d fh d fh dfhdfhdfhdfhdfh  hfdh."
-      },
-      {
-        "character": 0,
-        "direction": "Sad",
-        "text": "sdgsdgdgs sdg dsgsdgsdgsdg sggsd g sdgsdgsdgsdg sgdgdsg sdgsdg sdgadgahsfh."
-      },
-      {
-        "character": 1,
-        "direction": "Angry",
-        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
+        "direction": "Confidently",
+        "text": "Think again granddad. We've injected an added dose of Protothon to our unmanned Chromes. And they're ready to drop some heavy RTC all over your plans. The fallout's going to be immense. So long Plug-inator. KABOOM"
       }
     ]
   }
