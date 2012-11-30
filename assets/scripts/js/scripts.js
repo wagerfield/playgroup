@@ -2024,6 +2024,7 @@
 
     Story.prototype.setNodeState = function(index, state) {
       var $node;
+      log('setNodeState:', index, state);
       $node = this.$scriptNodes.eq(index);
       $node.addClass(state);
     };

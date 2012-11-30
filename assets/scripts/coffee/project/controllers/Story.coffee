@@ -114,6 +114,7 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
     return
 
   setNodeState: (index, state) =>
+    log 'setNodeState:', index, state
     $node = @$scriptNodes.eq index
     $node.addClass state
     return
