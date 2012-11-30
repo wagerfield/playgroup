@@ -24,22 +24,22 @@
       <button>Lucky Dip</button>
     </div>
     <div id="story">
-      <div id="local">
-        <video width="480" height="320" id="localVideo" class="vid" autoplay="autoplay"/>
-      </div>
+
       <div id="remote">
-        <video width="480" height="320" id="remoteVideo" class="vid" autoplay="autoplay">
-        </video>
-        <div id="mini">
-          <video width="480" height="320" id="miniVideo" class="vid" autoplay="autoplay" />
-        </div>
+
+
       </div>
       <header>
         <ul id="profiles" class="clearfix">
           <li class="profile a active">
+	        <div id="mini"><video width="480" height="320" id="miniVideo" class="vid" autoplay="autoplay" /></div>
+		      <div id="local">
+		        <video width="480" height="320" id="localVideo" class="vid" autoplay="autoplay"/>
+		      </div>
             <span class="name">User 1</span>
           </li>
           <li class="profile b">
+			<video width="480" height="320" id="remoteVideo" class="vid" autoplay="autoplay"></video>
             <span class="name">User 2</span>
           </li>
         </ul>
