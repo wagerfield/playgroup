@@ -14,12 +14,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+import os
 import webapp2
+from google.appengine.api import channel
+from google.appengine.ext.webapp import template
 
-class MainHandler(webapp2.RequestHandler):
+class Recorder(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
-
+        token = channel.create_channel('123456')
+        
+        template_values = {
+            'token' : token
+        }
+        
+        path = os.path.join(os.path.dirname(__file__), 'recorder.html')
+        self.response.out.write(template.render(path, template_values))
+    
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', Recorder)
 ], debug=True)
