@@ -24,6 +24,7 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
   ACTIVE_USER = 'active user'
   PENDING = 'pending'
   PENDING_USER = 'pending user'
+  HIDE = 'hide'
 
 
 
@@ -67,7 +68,14 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
     @$profileNodes = @$profiles.find '.profile'
     @$script = @$context.find '#script'
     @reset()
+    $(window).on 'keydown', @onKeydown
     # @getVideo()
+    return
+
+  onKeydown: (event) =>
+    event.preventDefault()
+    if event.keyCode is 40
+      @setNodeIndex @nodeIndex++
     return
 
   reset: () =>
@@ -108,14 +116,15 @@ class CONTROLLERS.Story extends CONTROLLERS.Controller
   setNodeIndex: (index) =>
     if @nodeIndex isnt index
       @nodeIndex = index
-      @setNodeState @nodeIndex - 1, GHOST
-      @setNodeState @nodeIndex + 0, ACTIVE
-      @setNodeState @nodeIndex + 1, PENDING
+      # @setNodeIndex index, HIDE for index in [0...@story.nodes.length]
+      # @setNodeState @nodeIndex - 1, GHOST
+      # @setNodeState @nodeIndex + 0, ACTIVE
+      # @setNodeState @nodeIndex + 1, PENDING
     return
 
   setNodeState: (index, state) =>
-    log 'setNodeState:', index, state
     $node = @$scriptNodes.eq index
+    log 'setNodeState:', index, state
     $node.addClass state
     return
 

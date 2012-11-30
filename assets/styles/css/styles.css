@@ -370,6 +370,7 @@ canvas {
   margin: 40px auto;
   width: 528px; }
   #script p {
+    line-height: 20px;
     padding: 10px;
     border: 1px solid #aaaaaa;
     font-family: serif;

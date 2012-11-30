@@ -19,17 +19,42 @@
       {
         "character": 0,
         "direction": "Angry",
-        "text": "Hello"
+        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
       },
       {
         "character": 1,
         "direction": "Happy",
-        "text": "World."
+        "text": "World asf asf a as fa sf dsg dfhdfhdfhsdfh dfhd fh dfh dfhdfhdfhdfh dfh d fhd fh dfh dfh  d fh d fh dfhdfhdfhdfhdfh  hfdh."
       },
       {
-        "character": 2,
+        "character": 0,
         "direction": "Sad",
-        "text": "Again."
+        "text": "sdgsdgdgs sdg dsgsdgsdgsdg sggsd g sdgsdgsdgsdg sgdgdsg sdgsdg sdgadgahsfh."
+      },
+      {
+        "character": 1,
+        "direction": "Angry",
+        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
+      },
+      {
+        "character": 0,
+        "direction": "Angry",
+        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
+      },
+      {
+        "character": 1,
+        "direction": "Happy",
+        "text": "World asf asf a as fa sf dsg dfhdfhdfhsdfh dfhd fh dfh dfhdfhdfhdfh dfh d fhd fh dfh dfh  d fh d fh dfhdfhdfhdfhdfh  hfdh."
+      },
+      {
+        "character": 0,
+        "direction": "Sad",
+        "text": "sdgsdgdgs sdg dsgsdgsdgsdg sggsd g sdgsdgsdgsdg sgdgdsg sdgsdg sdgadgahsfh."
+      },
+      {
+        "character": 1,
+        "direction": "Angry",
+        "text": "Hello asf asf asf asf asfasfasfa asfasfas asf."
       }
     ]
   }

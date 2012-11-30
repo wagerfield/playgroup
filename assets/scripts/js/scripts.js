@@ -1865,7 +1865,7 @@
 
 
   CONTROLLERS.Story = (function(_super) {
-    var ACTIVE, ACTIVE_USER, CHARACTER, DIRECTION, GHOST, PENDING, PENDING_USER;
+    var ACTIVE, ACTIVE_USER, CHARACTER, DIRECTION, GHOST, HIDE, PENDING, PENDING_USER;
 
     __extends(Story, _super);
 
@@ -1903,6 +1903,8 @@
 
       this.reset = __bind(this.reset, this);
 
+      this.onKeydown = __bind(this.onKeydown, this);
+
       this.initialise = __bind(this.initialise, this);
       return Story.__super__.constructor.apply(this, arguments);
     }
@@ -1920,6 +1922,8 @@
     PENDING = 'pending';
 
     PENDING_USER = 'pending user';
+
+    HIDE = 'hide';
 
     /*
       #========================================
@@ -1965,6 +1969,14 @@
       this.$profileNodes = this.$profiles.find('.profile');
       this.$script = this.$context.find('#script');
       this.reset();
+      $(window).on('keydown', this.onKeydown);
+    };
+
+    Story.prototype.onKeydown = function(event) {
+      event.preventDefault();
+      if (event.keyCode === 40) {
+        this.setNodeIndex(this.nodeIndex++);
+      }
     };
 
     Story.prototype.reset = function() {
@@ -2016,16 +2028,13 @@
     Story.prototype.setNodeIndex = function(index) {
       if (this.nodeIndex !== index) {
         this.nodeIndex = index;
-        this.setNodeState(this.nodeIndex - 1, GHOST);
-        this.setNodeState(this.nodeIndex + 0, ACTIVE);
-        this.setNodeState(this.nodeIndex + 1, PENDING);
       }
     };
 
     Story.prototype.setNodeState = function(index, state) {
       var $node;
-      log('setNodeState:', index, state);
       $node = this.$scriptNodes.eq(index);
+      log('setNodeState:', index, state);
       $node.addClass(state);
     };
 
