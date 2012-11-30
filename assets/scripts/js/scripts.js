@@ -1947,6 +1947,8 @@
 
     Story.prototype.$script = null;
 
+    Story.prototype.$scriptWrapper = null;
+
     Story.prototype.$scriptNodes = null;
 
     Story.prototype.story = null;
@@ -1968,6 +1970,7 @@
       this.$profiles = this.$context.find('#profiles');
       this.$profileNodes = this.$profiles.find('.profile');
       this.$script = this.$context.find('#script');
+      this.$scriptWrapper = this.$script.find('.wrapper');
       this.reset();
       $(window).on('keydown', this.onKeydown);
     };
@@ -1975,12 +1978,15 @@
     Story.prototype.onKeydown = function(event) {
       event.preventDefault();
       if (event.keyCode === 40) {
-        this.setNodeIndex(this.nodeIndex++);
+        this.setNodeIndex(this.nodeIndex + 1);
+      }
+      if (event.keyCode === 38) {
+        this.setNodeIndex(this.nodeIndex - 1);
       }
     };
 
     Story.prototype.reset = function() {
-      this.$script.empty();
+      this.$scriptWrapper.empty();
     };
 
     Story.prototype.getVideo = function() {
@@ -1994,7 +2000,6 @@
     Story.prototype.setUserId = function(id) {
       if (this.userId !== id) {
         this.userId = id;
-        log('setUserId:', id);
       }
     };
 
@@ -2022,19 +2027,40 @@
       $node = $("<p>" + node.text + "</p>");
       $node.data(CHARACTER, node.character);
       $node.data(DIRECTION, node.direction);
-      this.$script.append($node);
+      this.$scriptWrapper.append($node);
     };
 
     Story.prototype.setNodeIndex = function(index) {
-      if (this.nodeIndex !== index) {
+      var $activeNode, newIndex, top;
+      this.$localVideo = $('#local video');
+      this.$remoteVideo = $('#remote > video');
+      this.$miniVideo = $('#mini > video');
+      log('LOCAL:', this.$localVideo);
+      log('REMOTE:', this.$remoteVideo);
+      log('MINI:', this.$miniVideo);
+      newIndex = Math.clamp(index, 0, this.story.nodes.length - 1);
+      if (this.nodeIndex !== newIndex) {
+        this.$scriptNodes.attr({
+          "class": 'hide'
+        });
         this.nodeIndex = index;
+        if (index !== 0) {
+          this.setNodeState(index - 1, GHOST);
+        }
+        this.setNodeState(index + 0, ACTIVE);
+        this.setNodeState(index + 1, PENDING);
+        $activeNode = this.$script.find('.active');
+        top = $activeNode.position().top;
+        this.$scriptWrapper.css({
+          top: "" + (-top) + "px"
+        });
       }
     };
 
     Story.prototype.setNodeState = function(index, state) {
       var $node;
       $node = this.$scriptNodes.eq(index);
-      log('setNodeState:', index, state);
+      $node.removeClass('hide');
       $node.addClass(state);
     };
 
