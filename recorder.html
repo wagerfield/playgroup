@@ -8,19 +8,21 @@
 	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
 	
 	<script>
-    channel = new goog.appengine.Channel('{{ token }}');
-    socket = channel.open();
-    socket.onopen = onOpened;
-    socket.onmessage = onMessage;
-    //socket.onerror = onError;
-    socket.onclose = onClose;
 
-	
 	onOpened = function() {
 	  connected = true;
 	  sendMessage('opened');
 	  updateBoard();
 	};
+
+    channel = new goog.appengine.Channel('{{ token }}');
+    socket = channel.open();
+    socket.onopen = onOpened;
+    //socket.onmessage = onMessage;
+    //socket.onerror = onError;
+    //socket.onclose = onClose;
+
+	
 	
   </script>
 
