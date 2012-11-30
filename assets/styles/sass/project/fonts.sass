@@ -1,0 +1,43 @@
+//============================================================
+//
+// Crustation: Fonts
+//
+// @description Font definitions
+// @version 1.00
+//
+// @author matthew.wagerfield@f-i.com (Matthew Wagerfield)
+//
+// ---------- INDEX ----------
+//
+// Phoenix Sans Thin
+//
+// Phoenix Serif Regular
+//
+//============================================================
+
+$sans: "sans"
+$serif: "serif"
+
+=fontFace($type, $file, $weight, $style: normal)
+  font-weight: $weight
+  font-style: $style
+
+
+
+//----------------------------------------
+// Phoenix Sans
+//----------------------------------------
+
+// Thin
+@font-face
+  +fontFace($sans, "sans-thin", $Thin)
+
+
+
+//----------------------------------------
+// Phoenix Serif
+//----------------------------------------
+
+// Regular
+@font-face
+  +fontFace($serif, "serif-regular", $Regular)
