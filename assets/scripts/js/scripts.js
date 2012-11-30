@@ -18,7 +18,7 @@
 
 
 (function() {
-  var Class, Color, DEBUG, DOGTAG, Ease, GUI, GraphController, Layout, PROJECT, RTC, STATS, Utils, WebRTC, log, moduleKeywords, namespace, warn,
+  var CONTROLLERS, Class, Color, DEBUG, DOGTAG, Ease, GUI, GraphController, Layout, MODELS, PG, PROJECT, STATS, Utils, WebRTC, log, moduleKeywords, namespace, warn,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
     __slice = [].slice,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
@@ -684,6 +684,10 @@
   };
 
   PROJECT = namespace();
+
+  CONTROLLERS = namespace('controllers');
+
+  MODELS = namespace('models');
 
   /* --------------------------------------------
        Begin Layout.coffee
@@ -1457,6 +1461,613 @@
   }).call(this);
 
   /* --------------------------------------------
+       Begin Model.coffee
+  --------------------------------------------
+  */
+
+
+  /*
+  #============================================================
+  #
+  # Playgroup: Model
+  #
+  # @author Matthew Wagerfield
+  #
+  #============================================================
+  */
+
+
+  MODELS.Model = (function(_super) {
+
+    __extends(Model, _super);
+
+    /*
+      #========================================
+      # Class Variables
+      #========================================
+    */
+
+
+    Model["class"] = 'MODELS.Model';
+
+    /*
+      #========================================
+      # Instance Variables
+      #========================================
+    */
+
+
+    Model.prototype.url = null;
+
+    Model.prototype.dataType = null;
+
+    Model.prototype.data = null;
+
+    /*
+      #========================================
+      # Instance Methods
+      #========================================
+    */
+
+
+    function Model(url, dataType) {
+      this.url = url;
+      this.dataType = dataType != null ? dataType : 'json';
+      this.onLoadFail = __bind(this.onLoadFail, this);
+
+      this.onLoadDone = __bind(this.onLoadDone, this);
+
+      this.parse = __bind(this.parse, this);
+
+      this.initialise = __bind(this.initialise, this);
+
+      this.parsed = new signals.Signal;
+      return;
+    }
+
+    Model.prototype.initialise = function(options) {
+      if (options == null) {
+        options = {};
+      }
+      options = _.extend(options, {
+        url: this.url,
+        dataType: this.dataType
+      });
+      this.load = $.ajax(options);
+      this.load.done(this.onLoadDone);
+      this.load.fail(this.onLoadFail);
+    };
+
+    Model.prototype.parse = function(data) {
+      this.parsed.dispatch(this);
+    };
+
+    /*
+      #========================================
+      # Callbacks
+      #========================================
+    */
+
+
+    Model.prototype.onLoadDone = function(response) {
+      this.parse(this.data = response);
+    };
+
+    Model.prototype.onLoadFail = function(response) {
+      warn("" + (this["class"]()) + ":", response.status, response.statusText);
+    };
+
+    return Model;
+
+  })(Class);
+
+  /* --------------------------------------------
+       Begin Story.coffee
+  --------------------------------------------
+  */
+
+
+  /*
+  #============================================================
+  #
+  # Playgroup: Story Model
+  #
+  # @author Matthew Wagerfield
+  #
+  #============================================================
+  */
+
+
+  MODELS.Story = (function(_super) {
+
+    __extends(Story, _super);
+
+    /*
+      #========================================
+      # Class Variables
+      #========================================
+    */
+
+
+    function Story() {
+      this.parse = __bind(this.parse, this);
+      return Story.__super__.constructor.apply(this, arguments);
+    }
+
+    Story["class"] = 'MODELS.Story';
+
+    /*
+      #========================================
+      # Instance Variables
+      #========================================
+    */
+
+
+    Story.prototype.title = null;
+
+    Story.prototype.characters = null;
+
+    Story.prototype.story = null;
+
+    Story.prototype.nodes = null;
+
+    /*
+      #========================================
+      # Instance Methods
+      #========================================
+    */
+
+
+    Story.prototype.parse = function(data) {
+      this.title = data.title;
+      this.characters = data.characters;
+      this.story = data.story;
+      this.nodes = this.story.nodes;
+      Story.__super__.parse.apply(this, arguments);
+    };
+
+    /*
+      #========================================
+      # Callbacks
+      #========================================
+    */
+
+
+    return Story;
+
+  })(MODELS.Model);
+
+  /* --------------------------------------------
+       Begin Controller.coffee
+  --------------------------------------------
+  */
+
+
+  /*
+  #============================================================
+  #
+  # Playgroup: Controller
+  #
+  # @author Matthew Wagerfield
+  #
+  #============================================================
+  */
+
+
+  CONTROLLERS.Controller = (function(_super) {
+
+    __extends(Controller, _super);
+
+    /*
+      #========================================
+      # Class Variables
+      #========================================
+    */
+
+
+    Controller["class"] = 'SECTIONS.Controller';
+
+    /*
+      #========================================
+      # Instance Variables
+      #========================================
+    */
+
+
+    Controller.prototype.$context = null;
+
+    /*
+      #========================================
+      # Instance Methods
+      #========================================
+    */
+
+
+    function Controller($context) {
+      this.$context = $context;
+      this.addEventListeners = __bind(this.addEventListeners, this);
+
+      this.initialise = __bind(this.initialise, this);
+
+      return;
+    }
+
+    Controller.prototype.initialise = function() {};
+
+    Controller.prototype.addEventListeners = function() {};
+
+    /*
+      #========================================
+      # Callbacks
+      #========================================
+    */
+
+
+    return Controller;
+
+  })(Class);
+
+  /* --------------------------------------------
+       Begin Splashscreen.coffee
+  --------------------------------------------
+  */
+
+
+  /*
+  #============================================================
+  #
+  # Playgroup: Splashscreen
+  #
+  # @author Matthew Wagerfield
+  #
+  #============================================================
+  */
+
+
+  CONTROLLERS.Splashscreen = (function(_super) {
+
+    __extends(Splashscreen, _super);
+
+    /*
+      #========================================
+      # Class Variables
+      #========================================
+    */
+
+
+    function Splashscreen() {
+      this.addEventListeners = __bind(this.addEventListeners, this);
+
+      this.initialise = __bind(this.initialise, this);
+      return Splashscreen.__super__.constructor.apply(this, arguments);
+    }
+
+    Splashscreen["class"] = 'CONTROLLERS.Splashscreen';
+
+    /*
+      #========================================
+      # Instance Variables
+      #========================================
+    */
+
+
+    Splashscreen.prototype.$profiles = null;
+
+    /*
+      #========================================
+      # Instance Methods
+      #========================================
+    */
+
+
+    Splashscreen.prototype.initialise = function() {
+      this.$profiles = this.$context.find('#profiles');
+    };
+
+    Splashscreen.prototype.addEventListeners = function() {};
+
+    /*
+      #========================================
+      # Callbacks
+      #========================================
+    */
+
+
+    return Splashscreen;
+
+  })(CONTROLLERS.Controller);
+
+  /* --------------------------------------------
+       Begin Selection.coffee
+  --------------------------------------------
+  */
+
+
+  /*
+  #============================================================
+  #
+  # Playgroup: Selection
+  #
+  # @author Matthew Wagerfield
+  #
+  #============================================================
+  */
+
+
+  CONTROLLERS.Selection = (function(_super) {
+
+    __extends(Selection, _super);
+
+    /*
+      #========================================
+      # Class Variables
+      #========================================
+    */
+
+
+    function Selection() {
+      this.addEventListeners = __bind(this.addEventListeners, this);
+
+      this.initialise = __bind(this.initialise, this);
+      return Selection.__super__.constructor.apply(this, arguments);
+    }
+
+    Selection["class"] = 'CONTROLLERS.Selection';
+
+    /*
+      #========================================
+      # Instance Variables
+      #========================================
+    */
+
+
+    Selection.prototype.$profiles = null;
+
+    /*
+      #========================================
+      # Instance Methods
+      #========================================
+    */
+
+
+    Selection.prototype.initialise = function() {
+      this.$profiles = this.$context.find('#profiles');
+    };
+
+    Selection.prototype.addEventListeners = function() {};
+
+    /*
+      #========================================
+      # Callbacks
+      #========================================
+    */
+
+
+    return Selection;
+
+  })(CONTROLLERS.Controller);
+
+  /* --------------------------------------------
+       Begin Story.coffee
+  --------------------------------------------
+  */
+
+
+  /*
+  #============================================================
+  #
+  # Playgroup: Story Controller
+  #
+  # @author Matthew Wagerfield
+  #
+  #============================================================
+  */
+
+
+  CONTROLLERS.Story = (function(_super) {
+    var ACTIVE, ACTIVE_USER, CHARACTER, DIRECTION, GHOST, PENDING, PENDING_USER;
+
+    __extends(Story, _super);
+
+    /*
+      #========================================
+      # Constants
+      #========================================
+    */
+
+
+    function Story() {
+      this.iceCallback1 = __bind(this.iceCallback1, this);
+
+      this.onMediaStreamError = __bind(this.onMediaStreamError, this);
+
+      this.onMediaStreamSuccess = __bind(this.onMediaStreamSuccess, this);
+
+      this.start = __bind(this.start, this);
+
+      this.addEventListeners = __bind(this.addEventListeners, this);
+
+      this.setNodeState = __bind(this.setNodeState, this);
+
+      this.setNodeIndex = __bind(this.setNodeIndex, this);
+
+      this.createNode = __bind(this.createNode, this);
+
+      this.parseStory = __bind(this.parseStory, this);
+
+      this.setStory = __bind(this.setStory, this);
+
+      this.setUserId = __bind(this.setUserId, this);
+
+      this.getVideo = __bind(this.getVideo, this);
+
+      this.reset = __bind(this.reset, this);
+
+      this.initialise = __bind(this.initialise, this);
+      return Story.__super__.constructor.apply(this, arguments);
+    }
+
+    CHARACTER = 'CHARACTER';
+
+    DIRECTION = 'DIRECTION';
+
+    GHOST = 'ghost';
+
+    ACTIVE = 'active';
+
+    ACTIVE_USER = 'active user';
+
+    PENDING = 'pending';
+
+    PENDING_USER = 'pending user';
+
+    /*
+      #========================================
+      # Class Variables
+      #========================================
+    */
+
+
+    Story["class"] = 'CONTROLLERS.Story';
+
+    /*
+      #========================================
+      # Instance Variables
+      #========================================
+    */
+
+
+    Story.prototype.$profiles = null;
+
+    Story.prototype.$profileNodes = null;
+
+    Story.prototype.$script = null;
+
+    Story.prototype.$scriptNodes = null;
+
+    Story.prototype.story = null;
+
+    Story.prototype.userId = null;
+
+    Story.prototype.userVideo = null;
+
+    Story.prototype.nodeIndex = null;
+
+    /*
+      #========================================
+      # Instance Methods
+      #========================================
+    */
+
+
+    Story.prototype.initialise = function() {
+      this.$profiles = this.$context.find('#profiles');
+      this.$profileNodes = this.$profiles.find('.profile');
+      this.$script = this.$context.find('#script');
+      this.reset();
+    };
+
+    Story.prototype.reset = function() {
+      this.$script.empty();
+    };
+
+    Story.prototype.getVideo = function() {
+      var options;
+      options = {
+        video: true
+      };
+      navigator.getUserMedia(options, this.onMediaStreamSuccess, this.onMediaStreamError);
+    };
+
+    Story.prototype.setUserId = function(id) {
+      if (this.userId !== id) {
+        this.userId = id;
+        log('setUserId:', id);
+      }
+    };
+
+    Story.prototype.setStory = function(story) {
+      if (this.story !== story) {
+        this.story = story;
+        this.reset();
+        this.parseStory(story);
+      }
+    };
+
+    Story.prototype.parseStory = function(story) {
+      var node, _i, _len, _ref;
+      _ref = story.nodes;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        node = _ref[_i];
+        this.createNode(node);
+      }
+      this.$scriptNodes = this.$script.find('p');
+      this.start();
+    };
+
+    Story.prototype.createNode = function(node) {
+      var $node;
+      $node = $("<p>" + node.text + "</p>");
+      $node.data(CHARACTER, node.character);
+      $node.data(DIRECTION, node.direction);
+      this.$script.append($node);
+    };
+
+    Story.prototype.setNodeIndex = function(index) {
+      if (this.nodeIndex !== index) {
+        this.nodeIndex = index;
+        this.setNodeState(this.nodeIndex - 1, GHOST);
+        this.setNodeState(this.nodeIndex + 0, ACTIVE);
+        this.setNodeState(this.nodeIndex + 1, PENDING);
+      }
+    };
+
+    Story.prototype.setNodeState = function(index, state) {
+      var $node;
+      $node = this.$scriptNodes.eq(index);
+      $node.addClass(state);
+    };
+
+    Story.prototype.addEventListeners = function() {};
+
+    Story.prototype.start = function() {
+      this.setNodeIndex(0);
+    };
+
+    /*
+      #========================================
+      # Callbacks
+      #========================================
+    */
+
+
+    Story.prototype.onMediaStreamSuccess = function(stream) {
+      var offer, pc1;
+      this.userVideo = document.createElement('video');
+      this.userVideo.autoplay = true;
+      this.userVideo.src = window.URL.createObjectURL(stream);
+      document.body.appendChild(this.userVideo);
+      pc1 = new webkitPeerConnection00(null, iceCallback1);
+      pc1.addStream(stream);
+      offer = pc1.createOffer(null);
+      pc1.setLocalDescription(pc1.SDP_OFFER, offer);
+      pc1.startIce();
+    };
+
+    Story.prototype.onMediaStreamError = function(error) {
+      log(error);
+    };
+
+    Story.prototype.iceCallback1 = function(answer) {
+      log('iceCallback1:', answer);
+      pc1.setRemoteDescription(pc1.SDP_ANSWER, answer);
+    };
+
+    return Story;
+
+  })(CONTROLLERS.Controller);
+
+  /* --------------------------------------------
        Begin Main.coffee
   --------------------------------------------
   */
@@ -1499,9 +2110,17 @@
 
     Main.prototype.$content = null;
 
+    Main.prototype.$splashscreen = null;
+
+    Main.prototype.$selection = null;
+
+    Main.prototype.$story = null;
+
     Main.prototype.layout = null;
 
-    Main.prototype.raf = null;
+    Main.prototype.storyModel = null;
+
+    Main.prototype.storyController = null;
 
     /*
       #========================================
@@ -1511,17 +2130,9 @@
 
 
     function Main() {
-      this.iceCallback1 = __bind(this.iceCallback1, this);
-
-      this.onMediaStreamError = __bind(this.onMediaStreamError, this);
-
-      this.onMediaStreamSuccess = __bind(this.onMediaStreamSuccess, this);
-
-      this.animate = __bind(this.animate, this);
+      this.onStoryParsed = __bind(this.onStoryParsed, this);
 
       this.addEventListeners = __bind(this.addEventListeners, this);
-
-      this.getVideo = __bind(this.getVideo, this);
 
       this.addClasses = __bind(this.addClasses, this);
 
@@ -1529,36 +2140,29 @@
       this.$html = $('html');
       this.$body = $('body');
       this.$content = this.$body.find('#content');
+      this.$splashscreen = this.$content.find('#splashscreen');
+      this.$selection = this.$content.find('#selection');
+      this.$story = this.$content.find('#story');
       return;
     }
 
     Main.prototype.initialise = function() {
       Main.__super__.initialise.apply(this, arguments);
-      GUI.initialise({
-        width: 320
-      });
       this.addClasses();
-      this.getVideo();
       this.addEventListeners();
     };
 
     Main.prototype.addClasses = function() {
       this.layout = new Layout;
       this.layout.initialise();
+      this.storyModel = new MODELS.Story('/assets/data/story.json');
+      this.storyModel.initialise();
+      this.storyController = new CONTROLLERS.Story(this.$story);
+      this.storyController.initialise();
     };
 
-    Main.prototype.getVideo = function() {
-      var options;
-      options = {
-        video: true
-      };
-      navigator.getUserMedia(options, this.onMediaStreamSuccess, this.onMediaStreamError);
-    };
-
-    Main.prototype.addEventListeners = function() {};
-
-    Main.prototype.animate = function() {
-      this.raf = requestAnimationFrame(this.animate);
+    Main.prototype.addEventListeners = function() {
+      this.storyModel.parsed.add(this.onStoryParsed);
     };
 
     /*
@@ -1568,34 +2172,16 @@
     */
 
 
-    Main.prototype.onMediaStreamSuccess = function(stream) {
-      var offer, pc1, video;
-      log('onMediaStreamSuccess:', stream);
-      video = document.createElement('video');
-      video.autoplay = true;
-      video.src = window.URL.createObjectURL(stream);
-      document.body.appendChild(video);
-      pc1 = new webkitPeerConnection00(null, iceCallback1);
-      pc1.addStream(stream);
-      offer = pc1.createOffer(null);
-      pc1.setLocalDescription(pc1.SDP_OFFER, offer);
-      pc1.startIce();
-    };
-
-    Main.prototype.onMediaStreamError = function(error) {
-      log(error);
-    };
-
-    Main.prototype.iceCallback1 = function(answer) {
-      log('iceCallback1:', answer);
-      pc1.setRemoteDescription(pc1.SDP_ANSWER, answer);
+    Main.prototype.onStoryParsed = function(model) {
+      this.storyController.setUserId(0);
+      this.storyController.setStory(model);
     };
 
     return Main;
 
   })(Class);
 
-  this.RTC = RTC = new PROJECT.Main;
+  this.PG = PG = new PROJECT.Main;
 
   /* --------------------------------------------
        Begin scripts.coffee
@@ -1604,7 +2190,7 @@
 
 
   $(function() {
-    return RTC.initialise();
+    return PG.initialise();
   });
 
 }).call(this);

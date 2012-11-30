@@ -12,13 +12,40 @@
 <body>
 
   <div id="content">
-    <div id="splashscreen">
+    <div id="splashscreen" class="hide">
       <h1>Splashscreen</h1>
-      <button>Read</button>
+      <button>Audience</button>
+      <button>Actors</button>
     </div>
-    <div id="selection">
+    <div id="selection" class="hide">
+      <button>Choose your Character</button>
+      <button>Lucky Dip</button>
     </div>
     <div id="story">
+      <header>
+        <ul id="profiles" class="clearfix">
+          <li class="profile a active">
+            <span class="name">User 1</span>
+          </li>
+          <li class="profile b">
+            <span class="name">User 2</span>
+          </li>
+          <li class="profile c">
+            <span class="name">User 3</span>
+          </li>
+        </ul>
+      </header>
+      <article id="script">
+        <p class="ghost">
+          Here is some ghost text.
+        </p>
+        <p class="active">
+          Here is some active text.
+        </p>
+        <p class="pending">
+          Here is some pending text.
+        </p>
+      </article>
     </div>
   </div>
 
@@ -27,7 +54,6 @@
   <script src="assets/scripts/js/signals/signals.js"></script>
   <script src="assets/scripts/js/gui/gui.js"></script>
   <script src="assets/scripts/js/scripts.js"></script>
-  Hello
 
 </body>
 </html>

@@ -1,0 +1,65 @@
+$user1: #52CC00
+$user2: #00BFFF
+$user3: #D90000
+
+$profileWidth: 320px
+$profileHeight: 240px
+$profileSpacing: 20px
+$storyWidth: ($profileWidth + $profileSpacing) * 3 - $profileSpacing
+$scriptWidth: $storyWidth * 0.8
+
+#story
+  margin: 40px auto
+  width: $storyWidth
+
+#profiles
+  margin: 0
+  padding: 0
+  width: 100%
+
+  .profile
+    position: relative
+    padding: 0
+    margin: 0
+    display: block
+    width: $profileWidth
+    height: $profileHeight
+    border: 1px solid red
+    float: left
+
+    &.a
+      border-color: $user1
+
+    &.b
+      border-color: $user2
+
+    &.c
+      border-color: $user3
+
+    + .profile
+      margin-left: $profileSpacing
+
+    .name
+      position: absolute
+      bottom: 0
+      width: 100%
+      text-align: center
+
+#script
+  margin: 40px auto
+  width: $scriptWidth
+
+  p
+    padding: 10px
+    border: 1px solid #AAA
+    font-family: serif
+    font-size: 14px
+    color: #222
+
+  .ghost
+    opacity: 0.5
+
+  .active
+    // color: #F44
+
+  .pending

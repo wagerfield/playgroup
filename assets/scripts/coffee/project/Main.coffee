@@ -29,10 +29,17 @@ class PROJECT.Main extends Class
   $html: null
   $body: null
   $content: null
+  $splashscreen: null
+  $selection: null
+  $story: null
 
-  # Properties
   layout: null
-  raf: null
+
+  # Models
+  storyModel: null
+
+  # Controllers
+  storyController: null
 
 
 
@@ -48,17 +55,19 @@ class PROJECT.Main extends Class
     @$html = $ 'html'
     @$body = $ 'body'
     @$content = @$body.find '#content'
+    @$splashscreen = @$content.find '#splashscreen'
+    @$selection = @$content.find '#selection'
+    @$story = @$content.find '#story'
     return
 
   initialise: () =>
     super
 
     # Initialise the GUI
-    GUI.initialise width: 320
+    # GUI.initialise width: 320
 
     # Add classes.
     @addClasses()
-    @getVideo()
 
     # Add event listeners.
     @addEventListeners()
@@ -67,20 +76,22 @@ class PROJECT.Main extends Class
   addClasses: () =>
     @layout = new Layout
     @layout.initialise()
-    return
 
-  getVideo: () =>
-    options = video:true
-    navigator.getUserMedia options, @onMediaStreamSuccess, @onMediaStreamError
+    # @splashscreen = new CONTROLLERS.Splashscreen @$splashscreen
+    # @splashscreen.initialise()
+
+    # @selection = new CONTROLLERS.Selection @$selection
+    # @selection.initialise()
+
+    @storyModel = new MODELS.Story '/assets/data/story.json'
+    @storyModel.initialise()
+
+    @storyController = new CONTROLLERS.Story @$story
+    @storyController.initialise()
     return
 
   addEventListeners: () =>
-    return
-
-  animate: () =>
-
-    # Call the animate method using the requestAnimationFrame callback.
-    @raf = requestAnimationFrame @animate
+    @storyModel.parsed.add @onStoryParsed
     return
 
 
@@ -91,31 +102,12 @@ class PROJECT.Main extends Class
   #========================================
   ###
 
-  onMediaStreamSuccess: (stream) =>
-    log 'onMediaStreamSuccess:', stream
-
-    video = document.createElement 'video'
-    video.autoplay = true
-    video.src = window.URL.createObjectURL stream
-    document.body.appendChild video
-
-    pc1 = new webkitPeerConnection00 null, iceCallback1
-    pc1.addStream stream
-    offer = pc1.createOffer null
-    pc1.setLocalDescription pc1.SDP_OFFER, offer
-    pc1.startIce()
-    return
-
-  onMediaStreamError: (error) =>
-    log error
-    return
-
-  iceCallback1: (answer) =>
-    log 'iceCallback1:', answer
-    pc1.setRemoteDescription pc1.SDP_ANSWER, answer
+  onStoryParsed: (model) =>
+    @storyController.setUserId 0
+    @storyController.setStory model
     return
 
 
 
 # Create instance of Main class.
-@RTC = RTC = new PROJECT.Main
+@PG = PG = new PROJECT.Main

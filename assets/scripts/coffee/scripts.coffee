@@ -30,6 +30,20 @@
 # @codekit-prepend "gui/GUI.coffee"
 
 #------------------------------
+# Models
+#------------------------------
+# @codekit-prepend "project/models/Model.coffee"
+# @codekit-prepend "project/models/Story.coffee"
+
+#------------------------------
+# Controllers
+#------------------------------
+# @codekit-prepend "project/controllers/Controller.coffee"
+# @codekit-prepend "project/controllers/Splashscreen.coffee"
+# @codekit-prepend "project/controllers/Selection.coffee"
+# @codekit-prepend "project/controllers/Story.coffee"
+
+#------------------------------
 # Project
 #------------------------------
 # @codekit-prepend "project/Main.coffee"
@@ -37,4 +51,4 @@
 
 
 # Initialise the project.
-$ -> RTC.initialise()
+$ -> PG.initialise()
