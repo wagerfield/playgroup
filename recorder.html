@@ -5,26 +5,166 @@
 </head>
 
 <body>
-	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
 	
+
+    <div id="local">
+      <video width="100%" height="100%" id="localVideo" autoplay="autoplay"/>
+    </div>
+    
+	<div id="remote">
+      <video width="100%" height="100%" id="remoteVideo" autoplay="autoplay">
+    </video>
+
+    <div id="mini">
+      <video width="100%" height="100%" id="miniVideo" autoplay="autoplay" />
+    </div>
+
+
+	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
 	<script>
 
-	onOpened = function() {
-	  connected = true;
-	  //sendMessage('opened');
-	  //updateBoard();
-	};
 
-    channel = new goog.appengine.Channel('{{ token }}');
-    socket = channel.open();
-    socket.onopen = onOpened;
-    //socket.onmessage = onMessage;
-    //socket.onerror = onError;
-    //socket.onclose = onClose;
-
+  	var localVideo;
+  	var miniVideo;
+  	var remoteVideo;
+  	var localStream;
+  	var remoteStream;
+	var socket;
+	var initiator = 1;
+	var started = false;
+	var stream;
+	var pc;
+	
 	function initialize() {
-		
+		console.log("Initializing; room=0.");
+		localVideo = document.getElementById("localVideo");
+	    miniVideo = document.getElementById("miniVideo");
+	    remoteVideo = document.getElementById("remoteVideo");
+		resetStatus();
+		openChannel();
+		getUserMedia();
 	}
+
+	
+	function openChannel() {
+	    channel = new goog.appengine.Channel('{{ token }}');
+	  	var handler = {
+	    	'onopen': onChannelOpened
+	    	/*'onmessage': onChannelMessage,
+	    	'onerror': onChannelError,
+	    	'onclose': onChannelClosed*/
+	  	};
+
+		socket = channel.open(handler);		
+	}
+	
+	
+	function resetStatus() {
+    	if (!initiator) {
+			console.debug("Waiting for someone to join")
+    	} else {
+      		console.debug("Initializing...");
+    	}
+  	}
+
+  	function onChannelOpened() {
+    	console.log('Channel opened.');
+    	channelReady = true;
+  	}
+
+
+	function  onUserMediaSuccess(stream) {
+		console.debug("User granted access");
+        var url = webkitURL.createObjectURL(stream);
+		localVideo.src = url;
+		localStream = stream;
+		if (initiator) maybeStart();
+    }
+	function getUserMedia() {
+        window.URL = window.URL || window.webkitURL;
+        navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                                  navigator.mozGetUserMedia || navigator.msGetUserMedia;
+        navigator.getUserMedia({audio: true, video: true },onUserMediaSuccess);
+	}
+	
+	function maybeStart() {
+		if (!started && localStream && channelReady) {
+			console.debug("Creating Peer Connection...");
+			createPeerConnection();
+			pc.addStream(localStream);
+			started = true;
+		}
+  	}	
+
+
+
+	function createPeerConnection() {
+		try {
+	      pc = new webkitRTCPeerConnection(null);
+	 	  pc.onicecandidate = onIceCandidate;
+	      console.log("Created webkitPeerConnnection00 with config \"STUN stun.l.google.com:19302\".");
+	    } catch (e) {
+	      console.log("Failed to create PeerConnection, exception: " + e.message);
+	      alert("Cannot create PeerConnection object; Is the 'PeerConnection' flag enabled in about:flags?");
+	      return;
+	    }
+	    pc.onconnecting = onSessionConnecting;
+	    pc.onopen = onSessionOpened;
+	    pc.onaddstream = onRemoteStreamAdded;
+	    pc.onremovestream = onRemoteStreamRemoved;
+	  }
+
+	  function onSessionConnecting(message) {
+	    console.log("---------Session connecting.");
+	  }
+	  function onSessionOpened(message) {
+	    console.log("--------Session opened.");
+	  }
+	
+	  function onRemoteStreamRemoved(event) {
+	    console.log("--------Remote stream removed.");
+	  }
+	
+	  function onIceCandidate(event) {
+	    if (event.candidate) {
+	      sendMessage({type: 'candidate',
+	                   label: event.candidate.sdpMLineIndex,
+	                   id: event.candidate.sdpMid,
+	                   candidate: event.candidate.candidate});
+	    } else {
+	      console.log("End of candidates.");
+	    }
+	  }
+	
+	 function sendMessage(message) {
+	    var msgString = JSON.stringify(message);
+	    console.log('C->S: ' + msgString);
+	    path = '/message?r=46665573' + '&u=42871617';
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('POST', path, true);
+	    xhr.send(msgString);
+	  }
+	
+
+	  function onRemoteStreamAdded(event) {
+	    console.log("Remote stream added.");
+	    miniVideo.src = localVideo.src;
+	    attachMediaStream(remoteVideo, event.stream);
+	    remoteStream = event.stream;
+	    waitForRemoteVideo();  
+	  }
+	
+	  function waitForRemoteVideo() {
+	    if (remoteStream.videoTracks.length === 0 || remoteVideo.currentTime > 0) {
+	      	console.debug(remoteStream);
+			//transitionToActive();
+	    } else {
+	      setTimeout(waitForRemoteVideo, 100);
+	    }
+	  }
+	
+	
+	initialize();
 	
 	
   </script>
