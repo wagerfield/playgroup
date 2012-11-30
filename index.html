@@ -32,9 +32,9 @@
       <header>
         <ul id="profiles" class="clearfix">
           <li class="profile a active">
-	        <div id="mini"><video width="480" height="320" id="miniVideo" class="vid" autoplay="autoplay" /></div>
+	        <!-- <div id="mini"><video width="480" height="320" id="miniVideo" class="vid" autoplay="autoplay" /></div> -->
 		      <div id="local">
-		        <video width="480" height="320" id="localVideo" class="vid" autoplay="autoplay"/>
+		        <video width="480" height="320" id="localVideo" class="vid" autoplay="autoplay"/></video>
 		      </div>
             <span class="name">User 1</span>
           </li>
@@ -259,7 +259,7 @@ function onSessionOpened(message) {
 
 function onRemoteStreamAdded(event) {
   console.log("Remote stream added.");
-  miniVideo.src = localVideo.src;
+  //miniVideo.src = localVideo.src;
   attachMediaStream(remoteVideo, event.stream);
   remoteStream = event.stream;
   waitForRemoteVideo();
@@ -304,7 +304,7 @@ function waitForRemoteVideo() {
 
 function transitionToActive() {
   remoteVideo.style.opacity = 1;
-  localVideo.src = "";
+  //localVideo.src = "";
   miniVideo.style.opacity = 1;
   setStatus("<input type=\"button\" id=\"hangup\" value=\"Hang up\" onclick=\"onHangup()\" />");
 }
