@@ -1,0 +1,62 @@
+//============================================================
+//
+// Crustation: DAT GUI
+//
+// @description Styles for DAT GUI
+// @version 1.00
+//
+// @author matthew.wagerfield@f-i.com (Matthew Wagerfield)
+//
+//============================================================
+
+#datgui
+  position: absolute
+  margin-right: 0
+  z-index: 1
+  right: 0
+
+  .dg .cr.graph
+    $color: #FD6
+    +user-select(none)
+    border-left: 3px solid $color
+    height: 240px
+
+    .property-name
+      width: 100%
+
+    .graph-wrapper
+      position: relative
+      overflow: hidden
+      float: left
+
+    .graph-handle
+      $innerSize: 10px
+      $innerRadius: $innerSize / 2
+      border-radius: $innerRadius
+      margin: -$innerRadius
+      position: absolute
+      background: $color
+      height: $innerSize
+      width: $innerSize
+      cursor: pointer
+      left: 0
+      top: 0
+
+      &:before
+        $border: 10px
+        $outerSize: $innerSize + $border * 2
+        $outerRadius: $outerSize / 2
+        border-radius: $outerRadius
+        background: rgba(#FFF, 0.05)
+        height: $outerSize
+        width: $outerSize
+        margin: -$border
+        display: block
+        content: ''
+
+    canvas
+      background: #303030
+      display: block
+
+  .dg .closed .cr.graph
+    height: 0
